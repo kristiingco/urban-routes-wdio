@@ -6,7 +6,9 @@ describe("Create an order", () => {
         await browser.url(`/`);
         await page.fillAddresses("East 2nd Street, 601", "1300 1st St");
         await page.clickCallATaxiButton();
+        await page.clickSupportivePlanButton();
     });
+
     it("should open phone number modal", async () => {
         const phoneNumberButton = await $(page.phoneNumberButton);
         await phoneNumberButton.waitForDisplayed();
