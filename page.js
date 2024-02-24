@@ -16,6 +16,7 @@ module.exports = {
     addCardButton: "div.pp-row:nth-child(5)",
     linkButton: "button=Link",
     closeButton: ".payment-picker .close-button",
+    iceCreamCounterPlus: ".counter:nth-child(1) .counter-plus",
     nextButton: "button=Next",
     confirmButton: "button=Confirm",
     // Modals
@@ -103,5 +104,10 @@ module.exports = {
             this.blanketAndHandkerchiefsCheckbox
         );
         await blanketAndHandkerchiefsCheckbox.click();
+    },
+    clickIceCreamCounterPlus: async function () {
+        const iceCreamCounterPlus = await $(this.iceCreamCounterPlus);
+        await iceCreamCounterPlus.waitForDisplayed();
+        await iceCreamCounterPlus.click();
     },
 };

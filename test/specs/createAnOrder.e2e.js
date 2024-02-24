@@ -34,10 +34,20 @@ describe("Create an order", () => {
     });
 
     it("should select blanket and handkerchiefs", async () => {
-        page.clickBlanketAndHandkerchiefsCheckbox();
+        await page.clickBlanketAndHandkerchiefsCheckbox();
         const blanketAndHandkerchiefsCheckbox = await $(
             ".switch-input:nth-child(1)"
         );
         await expect(blanketAndHandkerchiefsCheckbox).toBeSelected();
+    });
+
+    it("should order 2 ice creams", async () => {
+        await page.clickIceCreamCounterPlus();
+        await page.clickIceCreamCounterPlus();
+        const iceCreamCounterValue = await $(
+            ".counter:nth-child(1) .counter-value"
+        );
+        const iceCreamCounterValueText = await iceCreamCounterValue.getText();
+        await expect(iceCreamCounterValueText).toHaveText("2");
     });
 });
