@@ -25,4 +25,11 @@ describe("Create an order", () => {
         const paymentMethodValueText = await paymentMethodValue.getText();
         await expect(paymentMethodValueText).toHaveText("Card");
     });
+
+    it("should add message to driver", async () => {
+        const input = "Get some chips, please";
+        await page.fillMessageToDriverField(input);
+        const messageToDriverField = await $(page.messageToDriverField);
+        await expect(messageToDriverField).toHaveValue(input);
+    });
 });

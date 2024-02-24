@@ -6,6 +6,7 @@ module.exports = {
     codeField: "#code",
     cardNumberField: ".card-number-input #number",
     cvvField: ".card-code-input #code",
+    messageToDriverField: "#comment",
     // Buttons
     callATaxiButton: "button=Call a taxi",
     supportivePlanButton: "//div[contains(@class, 'tcard')][5]",
@@ -91,5 +92,9 @@ module.exports = {
         const closeButton = await $(this.closeButton);
         await closeButton.waitForDisplayed();
         await closeButton.clicked();
+    },
+    fillMessageToDriverField: async function (input) {
+        const messageToDriverField = await $(this.messageToDriverField);
+        await messageToDriverField.setValue(input);
     },
 };
