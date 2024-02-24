@@ -7,6 +7,7 @@ module.exports = {
     cardNumberField: ".card-number-input #number",
     cvvField: ".card-code-input #code",
     messageToDriverField: "#comment",
+    blanketAndHandkerchiefsCheckbox: ".switch-input:nth-child(1)",
     // Buttons
     callATaxiButton: "button=Call a taxi",
     supportivePlanButton: "//div[contains(@class, 'tcard')][5]",
@@ -96,5 +97,11 @@ module.exports = {
     fillMessageToDriverField: async function (input) {
         const messageToDriverField = await $(this.messageToDriverField);
         await messageToDriverField.setValue(input);
+    },
+    clickBlanketAndHandkerchiefsCheckbox: async function () {
+        const blanketAndHandkerchiefsCheckbox = await $(
+            this.blanketAndHandkerchiefsCheckbox
+        );
+        await blanketAndHandkerchiefsCheckbox.click();
     },
 };

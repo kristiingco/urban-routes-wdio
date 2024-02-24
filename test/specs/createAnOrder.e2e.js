@@ -32,4 +32,12 @@ describe("Create an order", () => {
         const messageToDriverField = await $(page.messageToDriverField);
         await expect(messageToDriverField).toHaveValue(input);
     });
+
+    it("should select blanket and handkerchiefs", async () => {
+        page.clickBlanketAndHandkerchiefsCheckbox();
+        const blanketAndHandkerchiefsCheckbox = await $(
+            page.blanketAndHandkerchiefsCheckbox
+        );
+        await expect(blanketAndHandkerchiefsCheckbox).toBeSelected();
+    });
 });
