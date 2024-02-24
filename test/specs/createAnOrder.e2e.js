@@ -11,15 +11,7 @@ describe("Create an order", () => {
         await expect(supportivePlanButton).toHaveElementClass("active");
     });
 
-    it("should open phone number modal", async () => {
-        const phoneNumberButton = await $(page.phoneNumberButton);
-        await phoneNumberButton.waitForDisplayed();
-        await phoneNumberButton.click();
-        const phoneNumberModal = await $(page.phoneNumberModal);
-        await expect(phoneNumberModal).toBeExisting();
-    });
-
-    it("should save the phone", async () => {
+    it("should submit phone number", async () => {
         const phoneNumber = helper.getPhoneNumber("+1");
         await page.submitPhoneNumber(phoneNumber);
         await expect(await helper.getElementByText(phoneNumber)).toBeExisting();

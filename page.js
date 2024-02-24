@@ -36,10 +36,13 @@ module.exports = {
         await supportivePlanButton.waitForDisplayed();
         await supportivePlanButton.click();
     },
-    fillPhoneNumber: async function (phoneNumber) {
+    clickPhoneNumberButton: async function () {
         const phoneNumberButton = await $(this.phoneNumberButton);
         await phoneNumberButton.waitForDisplayed();
         await phoneNumberButton.click();
+    },
+    fillPhoneNumber: async function (phoneNumber) {
+        await this.clickPhoneNumberButton();
         const phoneNumberModal = await $(this.phoneNumberModal);
         await phoneNumberModal.waitForDisplayed();
         const phoneNumberField = await $(this.phoneNumberField);
