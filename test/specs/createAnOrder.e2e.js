@@ -36,7 +36,7 @@ describe("Create an order", () => {
     it("should select blanket and handkerchiefs", async () => {
         page.clickBlanketAndHandkerchiefsCheckbox();
         const blanketAndHandkerchiefsCheckbox = await $(
-            page.blanketAndHandkerchiefsCheckbox
+            ".switch-input:nth-child(1)"
         );
         await expect(blanketAndHandkerchiefsCheckbox).toBeSelected();
     });

@@ -7,7 +7,7 @@ module.exports = {
     cardNumberField: ".card-number-input #number",
     cvvField: ".card-code-input #code",
     messageToDriverField: "#comment",
-    blanketAndHandkerchiefsCheckbox: ".switch-input:nth-child(1)",
+    blanketAndHandkerchiefsCheckbox: ".switch:nth-child(1)",
     // Buttons
     callATaxiButton: "button=Call a taxi",
     supportivePlanButton: "//div[contains(@class, 'tcard')][5]",
