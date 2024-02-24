@@ -4,14 +4,21 @@ module.exports = {
     toField: "#to",
     phoneNumberField: "#phone",
     codeField: "#code",
+    cardNumberField: ".card-number-input #number",
+    cvvField: ".card-code-input #code",
     // Buttons
     callATaxiButton: "button=Call a taxi",
     supportivePlanButton: "//div[contains(@class, 'tcard')][5]",
-    phoneNumberButton: '//div[starts-with(text(), "Phone number")]',
+    phoneNumberButton: "//div[starts-with(text(), 'Phone number')]",
+    paymentMethodButton: ".pp-button",
+    addCardButton: "div.pp-row:nth-child(5)",
+    linkButton: "button=Link",
+    closeButton: ".payment-picker .close-button",
     nextButton: "button=Next",
     confirmButton: "button=Confirm",
     // Modals
     phoneNumberModal: ".modal",
+    addCardModal: ".modal",
     // Functions
     fillAddresses: async function (from, to) {
         const fromField = await $(this.fromField);
@@ -55,5 +62,31 @@ module.exports = {
         const code = await requests[0].response.body.code;
         await codeField.setValue(code);
         await $(this.confirmButton).click();
+    },
+    clickPaymentMethodButton: async function () {
+        const paymentMethodButton = await $(this.paymentMethodButton);
+        await paymentMethodButton.waitForDisplayed();
+        await paymentMethodButton.click();
+    },
+    fillCardDetails: async function (cardNumber, cvv) {
+        await this.clickPaymentMethodButton();
+        const addCardModal = await $(this.addCardModal);
+        await addCardModal.waitForDisplayed();
+        const cardNumberField = await $(this.cardNumberField);
+        await cardNumberField.waitForDisplayed();
+        await cardNumberField.setValue(cardNumber);
+        const cvvField = await $(this.cvvField);
+        await cvvField.waitForDisplayed();
+        await cvvField.setValue(cvv);
+    },
+    submitCardDetails: async function (cardNumber, cvv) {
+        await this.fillCardDetails(cardNumber, cvv);
+        await browser.keys("Tab");
+        const linkButton = await $(this.linkButton);
+        await linkButton.waitForEnabled();
+        await linkButton.click();
+        const closeButton = await $(this.closeButton);
+        await closeButton.waitForDisplayed();
+        await closeButton.clicked();
     },
 };
