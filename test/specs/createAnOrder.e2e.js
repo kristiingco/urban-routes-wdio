@@ -50,4 +50,16 @@ describe("Create an order", () => {
         const iceCreamCounterValueText = await iceCreamCounterValue.getText();
         await expect(iceCreamCounterValueText).toHaveText("2");
     });
+
+    it("should show car search model", async () => {
+        await page.clickOrderButton();
+        const carSearchModal = await $(page.carSearchModal);
+        await expect(carSearchModal).toBeExisting();
+    });
+
+    it("should show driver information", async () => {
+        const driverInformationButton = await $(page.driverInformationButton);
+        await driverInformationButton.waitForDisplayed({ timeout: 6000 });
+        await expect(driverInformationButton).toBeExisting();
+    });
 });

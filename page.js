@@ -19,9 +19,12 @@ module.exports = {
     iceCreamCounterPlus: ".counter:nth-child(1) .counter-plus",
     nextButton: "button=Next",
     confirmButton: "button=Confirm",
+    orderButton: "//button[contains(., 'Enter the number and order')]",
+    driverInformationButton: ".order-button",
     // Modals
     phoneNumberModal: ".modal",
     addCardModal: ".modal",
+    carSearchModal: ".order-body",
     // Functions
     fillAddresses: async function (from, to) {
         const fromField = await $(this.fromField);
@@ -109,5 +112,10 @@ module.exports = {
         const iceCreamCounterPlus = await $(this.iceCreamCounterPlus);
         await iceCreamCounterPlus.waitForDisplayed();
         await iceCreamCounterPlus.click();
+    },
+    clickOrderButton: async function () {
+        const orderButton = await $(this.orderButton);
+        await orderButton.waitForDisplayed();
+        await orderButton.click();
     },
 };
