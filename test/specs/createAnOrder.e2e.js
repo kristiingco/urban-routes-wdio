@@ -21,7 +21,7 @@ describe("Create an order", () => {
         const cardNumber = helper.getCardNumber();
         const cvv = helper.getCVV();
         await page.submitCardDetails(cardNumber, cvv);
-        const paymentMethodValue = await $(".pp-value .pp-value-text");
+        const paymentMethodValue = await $(page.paymentMethodValue);
         const paymentMethodValueText = await paymentMethodValue.getText();
         await expect(paymentMethodValueText).toHaveText("Card");
     });
@@ -35,18 +35,16 @@ describe("Create an order", () => {
 
     it("should select blanket and handkerchiefs", async () => {
         await page.clickBlanketAndHandkerchiefsCheckbox();
-        const blanketAndHandkerchiefsCheckbox = await $(
-            ".switch-input:nth-child(1)"
+        const blanketAndHandkerchiefsInput = await $(
+            page.blanketAndHandkerchiefsInput
         );
-        await expect(blanketAndHandkerchiefsCheckbox).toBeSelected();
+        await expect(blanketAndHandkerchiefsInput).toBeSelected();
     });
 
     it("should order 2 ice creams", async () => {
         await page.clickIceCreamCounterPlus();
         await page.clickIceCreamCounterPlus();
-        const iceCreamCounterValue = await $(
-            ".counter:nth-child(1) .counter-value"
-        );
+        const iceCreamCounterValue = await $(page.iceCreamCounterValue);
         const iceCreamCounterValueText = await iceCreamCounterValue.getText();
         await expect(iceCreamCounterValueText).toHaveText("2");
     });
