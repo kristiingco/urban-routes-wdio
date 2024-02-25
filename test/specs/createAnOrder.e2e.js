@@ -22,8 +22,7 @@ describe("Create an order", () => {
         const cvv = helper.getCVV();
         await page.submitCardDetails(cardNumber, cvv);
         const paymentMethodValue = await $(page.paymentMethodValue);
-        const paymentMethodValueText = await paymentMethodValue.getText();
-        await expect(paymentMethodValueText).toHaveText("Card");
+        await expect(paymentMethodValue).toHaveText("Card");
     });
 
     it("should add message to driver", async () => {
@@ -45,8 +44,7 @@ describe("Create an order", () => {
         await page.clickIceCreamCounterPlus();
         await page.clickIceCreamCounterPlus();
         const iceCreamCounterValue = await $(page.iceCreamCounterValue);
-        const iceCreamCounterValueText = await iceCreamCounterValue.getText();
-        await expect(iceCreamCounterValueText).toHaveText("2");
+        await expect(iceCreamCounterValue).toHaveText("2");
     });
 
     it("should show car search model", async () => {
@@ -56,8 +54,11 @@ describe("Create an order", () => {
     });
 
     it("should show driver information", async () => {
-        const driverInformationButton = await $(page.driverInformationButton);
-        await driverInformationButton.waitForDisplayed({ timeout: 6000 });
-        await expect(driverInformationButton).toBeExisting();
+        const driverInformationText = await $(page.driverInformationText);
+        // eslint-disable-next-line wdio/no-pause
+        await browser.pause(40000);
+        await expect(driverInformationText).toHaveTextContaining(
+            "The driver will arrive"
+        );
     });
 });

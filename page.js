@@ -14,21 +14,21 @@ module.exports = {
     supportivePlanButton: "//div[contains(@class, 'tcard')][5]",
     phoneNumberButton: "//div[starts-with(text(), 'Phone number')]",
     paymentMethodButton: ".pp-button",
-    addCardButton: "div.pp-row:nth-child(5)",
+    addCardButton: ".pp-row:last-child",
     linkButton: "button=Link",
     closeButton: ".payment-picker .close-button",
     iceCreamCounterPlus: ".counter:nth-child(1) .counter-plus",
     nextButton: "button=Next",
     confirmButton: "button=Confirm",
-    orderButton: "//button[contains(., 'Enter the number and order')]",
-    driverInformationButton: ".order-button",
+    orderButton: "button.smart-button",
     // Modals
     phoneNumberModal: ".modal",
-    addCardModal: ".modal",
+    addCardModal: ".payment-picker",
     carSearchModal: ".order-body",
     // Text
     paymentMethodValue: ".pp-value .pp-value-text",
     iceCreamCounterValue: ".counter:nth-child(1) .counter-value",
+    driverInformationText: ".order-header-title",
     // Functions
     fillAddresses: async function (from, to) {
         const fromField = await $(this.fromField);
@@ -81,8 +81,14 @@ module.exports = {
         await paymentMethodButton.waitForDisplayed();
         await paymentMethodButton.click();
     },
+    clickAddCardButton: async function () {
+        const addCardButton = await $(this.addCardButton);
+        await addCardButton.waitForDisplayed();
+        await addCardButton.click();
+    },
     fillCardDetails: async function (cardNumber, cvv) {
         await this.clickPaymentMethodButton();
+        await this.clickAddCardButton();
         const addCardModal = await $(this.addCardModal);
         await addCardModal.waitForDisplayed();
         const cardNumberField = await $(this.cardNumberField);
@@ -100,7 +106,7 @@ module.exports = {
         await linkButton.click();
         const closeButton = await $(this.closeButton);
         await closeButton.waitForDisplayed();
-        await closeButton.clicked();
+        await closeButton.click();
     },
     fillMessageToDriverField: async function (input) {
         const messageToDriverField = await $(this.messageToDriverField);
