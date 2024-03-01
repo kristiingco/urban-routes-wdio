@@ -26,4 +26,6 @@ JavaScript tests were developed for the WebdriverIO framework, employing automat
 
 1. Clone the repository
 2. Run the command `npm install` in the terminal open to the project directory
-3. Run the command `npm run wdio` for the tests to the run
+3. Deploy the server to obtain a server URL
+4. Replace the baseURL property in `wdio.conf.js` with the server URL
+5. Run the command `npm run wdio` for the tests to the run
