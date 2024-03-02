@@ -19,8 +19,8 @@ exports.config = {
     logLevel: "error",
     bail: 0,
     baseUrl:
-        "https://cnt-b2ce6f23-3114-44f5-a955-531a9599cda6.containerhub.tripleten-services.com",
-    waitforTimeout: 10000000,
+        "https://cnt-3d4c2563-1040-49eb-ac21-9105bc390b11.containerhub.tripleten-services.com",
+    waitforTimeout: 10000,
     connectionRetryTimeout: 120000,
     connectionRetryCount: 3,
     services: ["geckodriver", "intercept"],
@@ -28,6 +28,6 @@ exports.config = {
     reporters: ["spec"],
     mochaOpts: {
         ui: "bdd",
-        timeout: 60000,
+        timeout: 100000000,
     },
 };
